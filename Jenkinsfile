@@ -5,6 +5,7 @@ pipeline {
         DEPLOY_DIR = "/var/www/html/wordpress"
         REMOTE_USER = "root"
         REMOTE_HOST = "157.180.75.55"
+        SSH_KEY = "/root/.ssh/id_rsa"  // Private key path on Jenkins server
     }
 
     stages {
@@ -16,15 +17,13 @@ pipeline {
 
         stage('Deploy Code') {
             steps {
-                sshagent(credentials: ['wp-id']) {
-                    sh '''
-                    rsync -av \
-                      --exclude='wp-content/uploads' \
-                      --exclude='wp-config.php' \
-                      -e "ssh -o StrictHostKeyChecking=no" \
-                      . ${REMOTE_USER}@${REMOTE_HOST}:${DEPLOY_DIR}/
-                    '''
-                }
+                sh '''
+                rsync -av \
+                    --exclude='wp-content/uploads' \
+                    --exclude='wp-config.php' \
+                    -e "ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no" \
+                    . ${REMOTE_USER}@${REMOTE_HOST}:${DEPLOY_DIR}/
+                '''
             }
         }
     }
