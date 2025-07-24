@@ -16,13 +16,16 @@ pipeline {
 
         stage('Deploy Code') {
             steps {
-                sshagent(credentials: ['wp-id'])
-                sh '''
-                rsync -av --exclude='wp-content/uploads' --exclude='wp-config.php' -e "ssh -o StrictHostKeyChecking=no" . ${REMOTE_USER}@${REMOTE_HOST}:${DEPLOY_DIR}/
-                '''
+                sshagent(credentials: ['wp-id']) {
+                    sh '''
+                    rsync -av \
+                      --exclude='wp-content/uploads' \
+                      --exclude='wp-config.php' \
+                      -e "ssh -o StrictHostKeyChecking=no" \
+                      . ${REMOTE_USER}@${REMOTE_HOST}:${DEPLOY_DIR}/
+                    '''
+                }
             }
         }
     }
-}
-
 }
