@@ -3,6 +3,8 @@ pipeline {
 
     environment {
         DEPLOY_DIR = "/var/www/html/wordpress"
+        REMOTE_USER = "root"
+        REMOTE_HOST = "157.180.75.55"
     }
 
     stages {
@@ -15,7 +17,7 @@ pipeline {
         stage('Deploy Code') {
             steps {
                 sh '''
-                rsync -av --exclude='wp-content/uploads' --exclude='wp-config.php' . ${DEPLOY_DIR}/
+                rsync -av --exclude='wp-content/uploads' --exclude='wp-config.php' -e "ssh -o StrictHostKeyChecking=no" . ${REMOTE_USER}@${REMOTE_HOST}:${DEPLOY_DIR}/
                 '''
             }
         }
