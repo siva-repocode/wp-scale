@@ -8,16 +8,19 @@ pipeline {
             }
         }
 
-        stage('Deploy Code') {
+        stage('Deploy to Server') {
             steps {
                 publishOverSsh(
                     server: 'wp-server1',
                     transfers: [
                         sshTransfer(
-                            sourceFiles: '**/*',
+                            sourceFiles: '**',
                             excludes: 'wp-content/uploads/**,wp-config.php',
                             removePrefix: '',
-                            remoteDirectory: '/var/www/html/wordpress' // use your actual WP path
+                            remoteDirectory: '',
+                            execCommand: '''
+                                echo "Deployment completed"
+                            '''
                         )
                     ],
                     execTimeout: 120000,
