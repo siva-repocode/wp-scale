@@ -1,12 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        DEPLOY_DIR = "/var/www/html/wordpress"
-        REMOTE_USER = "root"
-        REMOTE_HOST = "157.180.75.55"
-    }
-
     stages {
         stage('Clone Repo') {
             steps {
@@ -16,15 +10,19 @@ pipeline {
 
         stage('Deploy Code') {
             steps {
-                sshagent(credentials: ['wp-id']) {
-                    sh '''
-                    rsync -av \
-                      --exclude='wp-content/uploads' \
-                      --exclude='wp-config.php' \
-                      -e "ssh -o StrictHostKeyChecking=no" \
-                      . ${REMOTE_USER}@${REMOTE_HOST}:${DEPLOY_DIR}/
-                    '''
-                }
+                publishOverSsh(
+                    server: 'wp-server1',
+                    transfers: [
+                        sshTransfer(
+                            sourceFiles: '**/*',
+                            excludes: 'wp-content/uploads/**,wp-config.php',
+                            removePrefix: '',
+                            remoteDirectory: '/var/www/html/wordpress' // use your actual WP path
+                        )
+                    ],
+                    execTimeout: 120000,
+                    verbose: true
+                )
             }
         }
     }
