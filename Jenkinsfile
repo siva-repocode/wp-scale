@@ -2,30 +2,34 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repo') {
+        stage('Checkout') {
             steps {
-                git credentialsId: 'token-wp', url: 'https://github.com/siva-repocode/wp-scale.git'
+                git credentialsId: 'token-wp', url: 'https://github.com/siva-repocode/wp-scale.git', branch: 'master'
             }
         }
 
         stage('Deploy to Server') {
             steps {
-                publishOverSsh(
-                    server: 'wp-server1',
-                    transfers: [
-                        sshTransfer(
-                            sourceFiles: '**',
-                            excludes: 'wp-content/uploads/**,wp-config.php',
-                            removePrefix: '',
-                            remoteDirectory: '',
-                            execCommand: '''
-                                echo "Deployment completed"
-                            '''
-                        )
-                    ],
-                    execTimeout: 120000,
-                    verbose: true
-                )
+                step([$class: 'BapSshPublisherPlugin',
+                    publishers: [
+                        [$class: 'BapSshPublisher',
+                            configName: 'wp-server1', 
+                            transfers: [
+                                [$class: 'BapSshTransfer',
+                                    sourceFiles: '**',
+                                    removePrefix: '',
+                                    remoteDirectory: '',
+                                    execCommand: '''
+                                        chown -R www-data:www-data /var/www/html/wordpress
+                                        echo "Deployed!"
+                                    '''
+                                ]
+                            ],
+                            usePromotionTimestamp: false,
+                            verbose: true
+                        ]
+                    ]
+                ])
             }
         }
     }
