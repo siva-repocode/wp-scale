@@ -1,22 +1,35 @@
 pipeline {
     agent any
 
-    environment {
-        DEPLOY_DIR = "/var/www/html/wordpress"
-    }
-
     stages {
-        stage('Clone Repo') {
+        stage('Checkout') {
             steps {
-                git credentialsId: 'token-wp', url: 'https://github.com/siva-repocode/wp-scale.git'
+                git credentialsId: 'token-wp', url: 'https://github.com/siva-repocode/wp-scale.git', branch: 'master'
             }
         }
 
-        stage('Deploy Code') {
+        stage('Deploy to Server') {
             steps {
-                sh '''
-                rsync -av --exclude='wp-content/uploads' --exclude='wp-config.php' . ${DEPLOY_DIR}/
-                '''
+                step([$class: 'BapSshPublisherPlugin',
+                    publishers: [
+                        [$class: 'BapSshPublisher',
+                            configName: 'wp-server1', 
+                            transfers: [
+                                [$class: 'BapSshTransfer',
+                                    sourceFiles: '**',
+                                    removePrefix: '',
+                                    remoteDirectory: '',
+                                    execCommand: '''
+                                        chown -R www-data:www-data /var/www/html/wordpress
+                                        echo "Deployed!"
+                                    '''
+                                ]
+                            ],
+                            usePromotionTimestamp: false,
+                            verbose: true
+                        ]
+                    ]
+                ])
             }
         }
     }

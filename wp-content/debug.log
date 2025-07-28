@@ -1,0 +1,125 @@
+[22-Jul-2025 18:14:01 UTC] Automatic updates starting...
+[22-Jul-2025 18:14:01 UTC]   Automatic plugin updates starting...
+[22-Jul-2025 18:14:01 UTC]   Automatic plugin updates complete.
+[22-Jul-2025 18:14:02 UTC] Automatic updates complete.
+[23-Jul-2025 06:11:37 UTC] Automatic updates starting...
+[23-Jul-2025 06:11:37 UTC]   Automatic plugin updates starting...
+[23-Jul-2025 06:11:37 UTC]   Automatic plugin updates complete.
+[23-Jul-2025 06:11:38 UTC] Automatic updates complete.
+[23-Jul-2025 18:15:34 UTC] Automatic updates starting...
+[23-Jul-2025 18:15:35 UTC]   Automatic plugin updates starting...
+[23-Jul-2025 18:15:35 UTC]   Automatic plugin updates complete.
+[23-Jul-2025 18:15:35 UTC] Automatic updates complete.
+[24-Jul-2025 06:21:25 UTC] Automatic updates starting...
+[24-Jul-2025 06:21:25 UTC]   Automatic plugin updates starting...
+[24-Jul-2025 06:21:25 UTC]   Automatic plugin updates complete.
+[24-Jul-2025 06:21:26 UTC] Automatic updates complete.
+[24-Jul-2025 18:10:01 UTC] Automatic updates starting...
+[24-Jul-2025 18:10:01 UTC]   Automatic plugin updates starting...
+[24-Jul-2025 18:10:01 UTC]   Automatic plugin updates complete.
+[24-Jul-2025 18:10:02 UTC] Automatic updates complete.
+[24-Jul-2025 19:28:52 UTC] W3 Total Cache environment exception: Edit file <strong>/var/www/html/wordpress/wp-config.php</strong> and add next lines:<textarea style="height: 100px; width: 100%;">/** Enable W3 Total Cache */
+define(&#039;WP_CACHE&#039;, true); // Added by W3 Total Cache
+</textarea><br />Edit file <strong>/var/www/html/wordpress/nginx.conf</strong> and add the following rules above the WordPress directives:<textarea style="height: 100px; width: 100%;"># BEGIN W3TC Browser Cache
+gzip on;
+gzip_types text/css text/x-component application/x-javascript application/javascript text/javascript text/x-js text/richtext text/plain text/xsd text/xsl text/xml image/bmp application/java application/msword application/vnd.ms-fontobject application/x-msdownload image/x-icon application/json application/vnd.ms-access video/webm application/vnd.ms-project application/x-font-otf application/vnd.ms-opentype application/vnd.oasis.opendocument.database application/vnd.oasis.opendocument.chart application/vnd.oasis.opendocument.formula application/vnd.oasis.opendocument.graphics application/vnd.oasis.opendocument.spreadsheet application/vnd.oasis.opendocument.text audio/ogg application/pdf application/vnd.ms-powerpoint image/svg+xml application/x-shockwave-flash image/tiff application/x-font-ttf audio/wav application/vnd.ms-write application/font-woff application/font-woff2 application/vnd.ms-excel;
+location ~ \.(css|htc|less|js|js2|js3|js4)$ {
+    expires 31536000s;
+    etag on;
+    if_modified_since exact;
+    try_files $uri $uri/ /index.php?$args;
+}
+location ~ \.(html|htm|rtf|rtx|txt|xsd|xsl|xml)$ {
+    etag on;
+    if_modified_since exact;
+    try_files $uri $uri/ /index.php?$args;
+}
+location ~ \.(asf|asx|wax|wmv|wmx|avi|avif|avifs|bmp|class|divx|doc|docx|exe|gif|gz|gzip|ico|jpg|jpeg|jpe|webp|json|mdb|mid|midi|mov|qt|mp3|m4a|mp4|m4v|mpeg|mpg|mpe|webm|mpp|_otf|odb|odc|odf|odg|odp|ods|odt|ogg|ogv|pdf|png|pot|pps|ppt|pptx|ra|ram|svg|svgz|swf|tar|tif|tiff|_ttf|wav|wma|wri|xla|xls|xlsx|xlt|xlw|zip)$ {
+    expires 31536000s;
+    etag on;
+    if_modified_since exact;
+    try_files $uri $uri/ /index.php?$args;
+}
+add_header Referrer-Policy &quot;no-referrer-when-downgrade&quot;;
+# END W3TC Browser Cache
+</textarea><br />
+[24-Jul-2025 19:28:52 UTC] W3 Total Cache environment exception: Edit file <strong>/var/www/html/wordpress/wp-config.php</strong> and add next lines:<textarea style="height: 100px; width: 100%;">/** Enable W3 Total Cache */
+define(&#039;WP_CACHE&#039;, true); // Added by W3 Total Cache
+</textarea><br />Edit file <strong>/var/www/html/wordpress/nginx.conf</strong> and add the following rules above the WordPress directives:<textarea style="height: 100px; width: 100%;"># BEGIN W3TC Browser Cache
+gzip on;
+gzip_types text/css text/x-component application/x-javascript application/javascript text/javascript text/x-js text/richtext text/plain text/xsd text/xsl text/xml image/bmp application/java application/msword application/vnd.ms-fontobject application/x-msdownload image/x-icon application/json application/vnd.ms-access video/webm application/vnd.ms-project application/x-font-otf application/vnd.ms-opentype application/vnd.oasis.opendocument.database application/vnd.oasis.opendocument.chart application/vnd.oasis.opendocument.formula application/vnd.oasis.opendocument.graphics application/vnd.oasis.opendocument.spreadsheet application/vnd.oasis.opendocument.text audio/ogg application/pdf application/vnd.ms-powerpoint image/svg+xml application/x-shockwave-flash image/tiff application/x-font-ttf audio/wav application/vnd.ms-write application/font-woff application/font-woff2 application/vnd.ms-excel;
+location ~ \.(css|htc|less|js|js2|js3|js4)$ {
+    expires 31536000s;
+    etag on;
+    if_modified_since exact;
+    try_files $uri $uri/ /index.php?$args;
+}
+location ~ \.(html|htm|rtf|rtx|txt|xsd|xsl|xml)$ {
+    etag on;
+    if_modified_since exact;
+    try_files $uri $uri/ /index.php?$args;
+}
+location ~ \.(asf|asx|wax|wmv|wmx|avi|avif|avifs|bmp|class|divx|doc|docx|exe|gif|gz|gzip|ico|jpg|jpeg|jpe|webp|json|mdb|mid|midi|mov|qt|mp3|m4a|mp4|m4v|mpeg|mpg|mpe|webm|mpp|_otf|odb|odc|odf|odg|odp|ods|odt|ogg|ogv|pdf|png|pot|pps|ppt|pptx|ra|ram|svg|svgz|swf|tar|tif|tiff|_ttf|wav|wma|wri|xla|xls|xlsx|xlt|xlw|zip)$ {
+    expires 31536000s;
+    etag on;
+    if_modified_since exact;
+    try_files $uri $uri/ /index.php?$args;
+}
+add_header Referrer-Policy &quot;no-referrer-when-downgrade&quot;;
+# END W3TC Browser Cache
+</textarea><br />
+[24-Jul-2025 19:30:58 UTC] PHP Fatal error:  Uncaught W3TC\Util_Environment_Exceptions in /var/www/html/wordpress/wp-content/plugins/w3-total-cache/PgCache_Environment.php:29
+Stack trace:
+#0 /var/www/html/wordpress/wp-content/plugins/w3-total-cache/SetupGuide_Plugin_Admin.php(274): W3TC\PgCache_Environment->fix_on_wpadmin_request()
+#1 /var/www/html/wordpress/wp-includes/class-wp-hook.php(324): W3TC\SetupGuide_Plugin_Admin->config_pgcache()
+#2 /var/www/html/wordpress/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters()
+#3 /var/www/html/wordpress/wp-includes/plugin.php(517): WP_Hook->do_action()
+#4 /var/www/html/wordpress/wp-admin/admin-ajax.php(192): do_action()
+#5 {main}
+  thrown in /var/www/html/wordpress/wp-content/plugins/w3-total-cache/PgCache_Environment.php on line 29
+[24-Jul-2025 19:30:58 UTC] PHP Fatal error:  Uncaught W3TC\Util_Environment_Exceptions in /var/www/html/wordpress/wp-content/plugins/w3-total-cache/PgCache_Environment.php:29
+Stack trace:
+#0 /var/www/html/wordpress/wp-content/plugins/w3-total-cache/SetupGuide_Plugin_Admin.php(274): W3TC\PgCache_Environment->fix_on_wpadmin_request()
+#1 /var/www/html/wordpress/wp-includes/class-wp-hook.php(324): W3TC\SetupGuide_Plugin_Admin->config_pgcache()
+#2 /var/www/html/wordpress/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters()
+#3 /var/www/html/wordpress/wp-includes/plugin.php(517): WP_Hook->do_action()
+#4 /var/www/html/wordpress/wp-admin/admin-ajax.php(192): do_action()
+#5 {main}
+  thrown in /var/www/html/wordpress/wp-content/plugins/w3-total-cache/PgCache_Environment.php on line 29
+[24-Jul-2025 19:31:02 UTC] PHP Fatal error:  Uncaught W3TC\Util_Environment_Exceptions in /var/www/html/wordpress/wp-content/plugins/w3-total-cache/PgCache_Environment.php:29
+Stack trace:
+#0 /var/www/html/wordpress/wp-content/plugins/w3-total-cache/SetupGuide_Plugin_Admin.php(274): W3TC\PgCache_Environment->fix_on_wpadmin_request()
+#1 /var/www/html/wordpress/wp-includes/class-wp-hook.php(324): W3TC\SetupGuide_Plugin_Admin->config_pgcache()
+#2 /var/www/html/wordpress/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters()
+#3 /var/www/html/wordpress/wp-includes/plugin.php(517): WP_Hook->do_action()
+#4 /var/www/html/wordpress/wp-admin/admin-ajax.php(192): do_action()
+#5 {main}
+  thrown in /var/www/html/wordpress/wp-content/plugins/w3-total-cache/PgCache_Environment.php on line 29
+[25-Jul-2025 06:10:50 UTC] Automatic updates starting...
+[25-Jul-2025 06:10:50 UTC]   Automatic plugin updates starting...
+[25-Jul-2025 06:10:50 UTC]   Automatic plugin updates complete.
+[25-Jul-2025 06:10:51 UTC] Automatic updates complete.
+[25-Jul-2025 18:15:02 UTC] Automatic updates starting...
+[25-Jul-2025 18:15:03 UTC]   Automatic plugin updates starting...
+[25-Jul-2025 18:15:03 UTC]   Automatic plugin updates complete.
+[25-Jul-2025 18:15:03 UTC] Automatic updates complete.
+[26-Jul-2025 06:11:04 UTC] Automatic updates starting...
+[26-Jul-2025 06:11:05 UTC]   Automatic plugin updates starting...
+[26-Jul-2025 06:11:05 UTC]   Automatic plugin updates complete.
+[26-Jul-2025 06:11:05 UTC] Automatic updates complete.
+[26-Jul-2025 18:09:50 UTC] Automatic updates starting...
+[26-Jul-2025 18:09:51 UTC]   Automatic plugin updates starting...
+[26-Jul-2025 18:09:51 UTC]   Automatic plugin updates complete.
+[26-Jul-2025 18:09:51 UTC] Automatic updates complete.
+[27-Jul-2025 06:15:02 UTC] Automatic updates starting...
+[27-Jul-2025 06:15:02 UTC]   Automatic plugin updates starting...
+[27-Jul-2025 06:15:02 UTC]   Automatic plugin updates complete.
+[27-Jul-2025 06:15:03 UTC] Automatic updates complete.
+[27-Jul-2025 18:15:03 UTC] Automatic updates starting...
+[27-Jul-2025 18:15:03 UTC]   Automatic plugin updates starting...
+[27-Jul-2025 18:15:03 UTC]   Automatic plugin updates complete.
+[27-Jul-2025 18:15:04 UTC] Automatic updates complete.
+[28-Jul-2025 06:12:17 UTC] Automatic updates starting...
+[28-Jul-2025 06:12:18 UTC]   Automatic plugin updates starting...
+[28-Jul-2025 06:12:18 UTC]   Automatic plugin updates complete.
+[28-Jul-2025 06:12:18 UTC] Automatic updates complete.
